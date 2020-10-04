@@ -1,0 +1,442 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "a2-test",
+        "directory": "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2",
+        "workspaceDir": "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2",
+        "sources": [
+            "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\src\\test\\scala-2.12",
+            "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\src\\test\\scala",
+            "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\src\\test\\java",
+            "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\target\\scala-2.12\\src_managed\\test"
+        ],
+        "dependencies": [
+            "a2"
+        ],
+        "classpath": [
+            "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\.bloop\\a2\\scala-2.12\\classes",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-library\\2.12.8\\scala-library-2.12.8.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\kiama\\kiama_2.12\\2.1.0\\kiama_2.12-2.1.0.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\kiama\\kiama_2.12\\2.1.0\\kiama_2.12-2.1.0-tests.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\junit\\junit\\4.12\\junit-4.12.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalacheck\\scalacheck_2.12\\1.13.5\\scalacheck_2.12-1.13.5.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalatest\\scalatest_2.12\\3.0.3\\scalatest_2.12-3.0.3.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\com\\google\\code\\findbugs\\jsr305\\3.0.2\\jsr305-3.0.2.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\com\\google\\guava\\guava\\21.0\\guava-21.0.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\dsinfo\\dsinfo_2.12\\0.4.0\\dsinfo_2.12-0.4.0.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\dsprofile\\dsprofile_2.12\\0.4.0\\dsprofile_2.12-0.4.0.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\rogach\\scallop_2.12\\2.1.1\\scallop_2.12-2.1.1.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-reflect\\2.12.8\\scala-reflect-2.12.8.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\jline\\jline\\2.14.3\\jline-2.14.3.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\hamcrest\\hamcrest-core\\1.3\\hamcrest-core-1.3.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-sbt\\test-interface\\1.0\\test-interface-1.0.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalactic\\scalactic_2.12\\3.0.3\\scalactic_2.12-3.0.3.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\modules\\scala-xml_2.12\\1.0.5\\scala-xml_2.12-1.0.5.jar",
+            "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\modules\\scala-parser-combinators_2.12\\1.0.4\\scala-parser-combinators_2.12-1.0.4.jar"
+        ],
+        "out": "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\.bloop\\a2",
+        "classesDir": "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\.bloop\\a2\\scala-2.12\\test-classes",
+        "resources": [
+            "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\src\\test\\resources",
+            "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\target\\scala-2.12\\resource_managed\\test"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.12.8",
+            "options": [
+                "-deprecation",
+                "-feature",
+                "-unchecked",
+                "-Xcheckinit",
+                "-Xfatal-warnings",
+                "-Xlint:-stars-align,-unused,_"
+            ],
+            "jars": [
+                "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-compiler\\2.12.8\\scala-compiler-2.12.8.jar",
+                "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-library\\2.12.8\\scala-library-2.12.8.jar",
+                "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-reflect\\2.12.8\\scala-reflect-2.12.8.jar",
+                "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\modules\\scala-xml_2.12\\1.0.6\\scala-xml_2.12-1.0.6.jar",
+                "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\jline\\jline\\2.14.6\\jline-2.14.6.jar"
+            ],
+            "analysis": "D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2\\target\\streams\\test\\bloopAnalysisOut\\_global\\streams\\inc_compile_2.12.zip",
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
+            }
+        },
+        "java": {
+            "options": [
+                
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "C:\\Users\\tride\\.jabba\\jdk\\adopt@1.8.0-252\\jre",
+                "options": [
+                    "-Duser.dir=D:\\newStudyFolder\\Semester_4\\Programming Languages(COMP3000)\\Ass\\a2"
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.8",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-library\\2.12.8\\scala-library-2.12.8.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-library\\2.12.8\\scala-library-2.12.8-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.bitbucket.inkytonik.kiama",
+                    "name": "kiama_2.12",
+                    "version": "2.1.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "kiama_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\kiama\\kiama_2.12\\2.1.0\\kiama_2.12-2.1.0.jar"
+                        },
+                        {
+                            "name": "kiama_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\kiama\\kiama_2.12\\2.1.0\\kiama_2.12-2.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "junit",
+                    "name": "junit",
+                    "version": "4.12",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "junit",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\junit\\junit\\4.12\\junit-4.12.jar"
+                        },
+                        {
+                            "name": "junit",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\junit\\junit\\4.12\\junit-4.12-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scalacheck",
+                    "name": "scalacheck_2.12",
+                    "version": "1.13.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scalacheck_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalacheck\\scalacheck_2.12\\1.13.5\\scalacheck_2.12-1.13.5.jar"
+                        },
+                        {
+                            "name": "scalacheck_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalacheck\\scalacheck_2.12\\1.13.5\\scalacheck_2.12-1.13.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scalatest",
+                    "name": "scalatest_2.12",
+                    "version": "3.0.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scalatest_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalatest\\scalatest_2.12\\3.0.3\\scalatest_2.12-3.0.3.jar"
+                        },
+                        {
+                            "name": "scalatest_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalatest\\scalatest_2.12\\3.0.3\\scalatest_2.12-3.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.code.findbugs",
+                    "name": "jsr305",
+                    "version": "3.0.2",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jsr305",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\com\\google\\code\\findbugs\\jsr305\\3.0.2\\jsr305-3.0.2.jar"
+                        },
+                        {
+                            "name": "jsr305",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\com\\google\\code\\findbugs\\jsr305\\3.0.2\\jsr305-3.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "com.google.guava",
+                    "name": "guava",
+                    "version": "21.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "guava",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\com\\google\\guava\\guava\\21.0\\guava-21.0.jar"
+                        },
+                        {
+                            "name": "guava",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\com\\google\\guava\\guava\\21.0\\guava-21.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.bitbucket.inkytonik.dsinfo",
+                    "name": "dsinfo_2.12",
+                    "version": "0.4.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "dsinfo_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\dsinfo\\dsinfo_2.12\\0.4.0\\dsinfo_2.12-0.4.0.jar"
+                        },
+                        {
+                            "name": "dsinfo_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\dsinfo\\dsinfo_2.12\\0.4.0\\dsinfo_2.12-0.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.bitbucket.inkytonik.dsprofile",
+                    "name": "dsprofile_2.12",
+                    "version": "0.4.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "dsprofile_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\dsprofile\\dsprofile_2.12\\0.4.0\\dsprofile_2.12-0.4.0.jar"
+                        },
+                        {
+                            "name": "dsprofile_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\bitbucket\\inkytonik\\dsprofile\\dsprofile_2.12\\0.4.0\\dsprofile_2.12-0.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.rogach",
+                    "name": "scallop_2.12",
+                    "version": "2.1.1",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scallop_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\rogach\\scallop_2.12\\2.1.1\\scallop_2.12-2.1.1.jar"
+                        },
+                        {
+                            "name": "scallop_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\rogach\\scallop_2.12\\2.1.1\\scallop_2.12-2.1.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-reflect",
+                    "version": "2.12.8",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-reflect",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-reflect\\2.12.8\\scala-reflect-2.12.8.jar"
+                        },
+                        {
+                            "name": "scala-reflect",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-reflect\\2.12.8\\scala-reflect-2.12.8-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "jline",
+                    "name": "jline",
+                    "version": "2.14.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "jline",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\jline\\jline\\2.14.3\\jline-2.14.3.jar"
+                        },
+                        {
+                            "name": "jline",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\jline\\jline\\2.14.3\\jline-2.14.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.hamcrest",
+                    "name": "hamcrest-core",
+                    "version": "1.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "hamcrest-core",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\hamcrest\\hamcrest-core\\1.3\\hamcrest-core-1.3.jar"
+                        },
+                        {
+                            "name": "hamcrest-core",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\hamcrest\\hamcrest-core\\1.3\\hamcrest-core-1.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-sbt",
+                    "name": "test-interface",
+                    "version": "1.0",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "test-interface",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-sbt\\test-interface\\1.0\\test-interface-1.0.jar"
+                        },
+                        {
+                            "name": "test-interface",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-sbt\\test-interface\\1.0\\test-interface-1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scalactic",
+                    "name": "scalactic_2.12",
+                    "version": "3.0.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scalactic_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalactic\\scalactic_2.12\\3.0.3\\scalactic_2.12-3.0.3.jar"
+                        },
+                        {
+                            "name": "scalactic_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scalactic\\scalactic_2.12\\3.0.3\\scalactic_2.12-3.0.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-xml_2.12",
+                    "version": "1.0.5",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-xml_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\modules\\scala-xml_2.12\\1.0.5\\scala-xml_2.12-1.0.5.jar"
+                        },
+                        {
+                            "name": "scala-xml_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\modules\\scala-xml_2.12\\1.0.5\\scala-xml_2.12-1.0.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang.modules",
+                    "name": "scala-parser-combinators_2.12",
+                    "version": "1.0.4",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-parser-combinators_2.12",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\modules\\scala-parser-combinators_2.12\\1.0.4\\scala-parser-combinators_2.12-1.0.4.jar"
+                        },
+                        {
+                            "name": "scala-parser-combinators_2.12",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\modules\\scala-parser-combinators_2.12\\1.0.4\\scala-parser-combinators_2.12-1.0.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.12.8",
+                    "configurations": "optional",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-library\\2.12.8\\scala-library-2.12.8.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "C:\\Users\\tride\\AppData\\Local\\Coursier\\cache\\v1\\https\\repo1.maven.org\\maven2\\org\\scala-lang\\scala-library\\2.12.8\\scala-library-2.12.8-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "test"
+        ]
+    }
+}

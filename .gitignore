@@ -1,0 +1,5 @@
+*.zip
+*.metals
+*.vscode
+target
+*history
