@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>COMP3000 2020 Assignment Two</title>
+  </head>
+
+  <body>
+    <h1>Macquarie University<br>Department of Computing</h1>
+
+    <h2>COMP3000 Programming Languages 2020</h2>
+
+    <h2>Assignment Two</h2>
+
+    <h3>Syntax Analysis</h3>
+
+    <p>Due: see submission page<br>
+      Worth: 15% of unit assessment</p>
+
+<p>
+Marks breakdown:
+</p><ul>
+<li>Code: 50% (of which tests are worth 10%)</li>
+<li>Report: 50% (of which test description is worth 10%)</li>
+</ul>
+<p></p>
+
+<p>Submit a notice of disruption via <a href="https://ask.mq.edu.au/">ask.mq.edu.au</a> if you are unable to submit on time
+for medical or other legitimate reasons.</p>
+
+<p>Late penalty without proper justification: 20% of the full marks for the
+assessment per day or part thereof late.</p>
+
+<h4>Overview</h4>
+
+ <p>This assignment asks you to develop a lexical analyser, parser  and tree
+builder for a simple functional programming language  called FunLang. We will
+build on these components in the third assignment to complete a full
+implementation of this language.</p>
+
+ <p>Building this implementation will give you insight into the  way that
+programming language implementations work in general,  as well as specific
+experience with how functional language  programs are written, how they are
+compiled, and how they are  executed.</p>
+
+ <p>This kind of task often arises in programming situations other  than
+language implementation. For example, many applications have  configuration
+files that are written in simple languages. The  application must be able to
+read these files reliably and  understand their structure, just as a compiler
+must read program  files and understand them.</p>
+
+ <h4>FunLang</h4>
+
+<p>FunLang is a language that contains elements from mainstream functional
+languages such as Haskell, ML and Scala; it uses a Scala-like syntax.
+The necessary information about FunLang will be provided in this document.</p>
+
+<p>The description here is a brief overview of the FunLang language.
+Aspects such as checking the validity of names or types and translating the
+program into an executable form are beyond the scope of syntax analysis and
+hence are not considered in this assignment.</p>
+
+<p>The basic unit of a FunLang program is the <em>expression</em>; there are
+no statements.
+In fact, a program is just a single expression.
+For example, here is a simple program that returns the result of a simple
+arithmetic operation:</p>
+
+<pre>2 + 3 * 4
+</pre>
+
+<p>When this program is run it will print the value of the expression:
+the number 14.</p>
+
+<p><em>Block expressions</em> are used to build programs out of smaller
+expressions.
+A block expression is a pair of curly braces containing one or more
+definitions, followed by a single expression.
+The idea is that the definitions can give names to values and functions.
+The value of a block expression is given by its final expression, which can
+use the defined names.
+For example, here is a program consisting of a block expression that uses
+two values:</p>
+
+<pre>{
+   val a = 5
+   val b = a + 1
+   a * b
+}
+</pre>
+
+<p>This program will print the result of multiplying <code>a</code> by
+<code>b</code>, so 30 will be printed.
+(The name <code>a</code> can be used in the definition of <code>b</code>
+since <code>b</code> is defined later, but that is a name analysis issue,
+so we don't need to worry about it here.)
+There are no assignment statements, so the value bound to a particular
+occurrence of a name cannot be changed.</p>
+
+<p>Definitions can also define <em>functions</em>.
+For example, here is a program that defines a value, a function and calls
+the function passing the value as a parameter:</p>
+
+<pre>{
+  val x = 100
+  def inc (a : Int) = a + 1
+  inc (x)
+}
+</pre>
+
+<p>This program will print 101.</p>
+
+<p>All of these programs have just one expression at the top level.
+In fact, that's the definition of a program in FunLang: a single expression.
+Expression forms are interchangeable as long as they have the correct type.
+E.g., anywhere we can put a number can also take a block or some other kind
+of expression that evaluates to a number.
+For example, here is an artificial program that uses blocks nested inside
+an arithmetic operation.</p>
+
+<pre>{
+  val a = 3
+  a + 1
+} *
+{
+  val b = 10
+  b - 1
+}
+</pre>
+
+<p>This program will print 36 since it is multiplying 4 times 9.</p>
+
+<p>We've seen a few different forms of expression: numbers, addition
+expressions, multiplication expressions and function call expressions.
+There are also other arithmetic operations, Boolean values, Boolean
+literals, relational and logical operators, and conditional expressions.
+The complete syntax of FunLang is given below.</p>
+
+<p>Finally, FunLang comments are as in Java: either beginning with two
+slashes and continuing to the end of the line, or surrounded by
+<code>/*</code> and <code>*/</code>.</p>
+
+<pre>val z = 3 // This is a comment
+z + 7  /* So is this */
+</pre>
+
+<h4>The syntax of FunLang</h4>
+
+<p>To guide your implementation, here is a context-free grammar for the
+FunLang language on which you can base your parser.</p>
+
+<p>First, the syntax of programs and expressions:</p>
+
+<pre>program : exp.
+
+exp : app
+    | block
+    | cond
+    | exp "==" exp
+    | exp "&lt;" exp
+    | exp "+" exp
+    | exp "-" exp
+    | exp "*" exp
+    | exp "/" exp
+    | "false"
+    | "true"
+    | idnuse
+    | integer
+    | "(" exp ")".
+
+app : idnuse "(" exp ")".
+
+block : "{" definitions exp "}".
+
+cond : "if" "(" exp ")" "then" exp "else" exp.
+</pre>
+
+<p>Now the syntax of definitions that can occur in blocks:</p>
+
+<pre>definitions : defngroup+.
+
+defngroup : fundefn+
+          | valdefn.
+
+fundefn : "def" idndef "(" arg ")" "=" exp.
+
+arg : idndef ":" tipe.
+
+valdefn : "val" idndef "=" exp.
+</pre>
+
+<p>Functions that are defined adjacent to each other are grouped together
+and they can call each other. The node class <code>FunGroup</code> is used
+for this purpose and each function is represented by a <code>Fun</code>
+node. Values are not grouped (or equivalently, each value group consists
+of a single value) and are represented by <code>Val</code> nodes.
+</p>
+
+<p>Finally, the syntax of types:</p>
+
+<pre>tipe : "Bool"
+     | "Int"
+     | tipe "=&gt;" tipe
+     | "(" tipe ")".
+</pre>
+
+<p>We use the word "tipe" instead of "type" since the latter is a Scala
+keyword which prevents us from using it as the name of a parser in our
+code.
+A function type is specified using the arrow <code>=&gt;</code> and describes
+the type of a function that takes a value of the type on the left of the
+arrow and returns a value of the type on the right of the arrow.
+(Type analysis issues are also out of scope for this assignment.)</p>
+
+<p>The grammar above is not immediately suitable for encoding as a parser.
+The <code>exp</code> and <code>tipe</code> non-terminals are ambiguous
+since they make no allowance for precedence and associativity of the
+operators.
+You should rewrite the grammar productions to implement the following
+precedence and associativity rules:</p>
+
+<ul>
+    <li>The following expression constructs have precedence as shown from
+    lowest to highest with constructs on the same line having the same
+    precedence:
+        <ol>
+            <li>conditional expressions (if ... then ... else ...)</li>
+            <li>equal and less than</li>
+            <li>addition and subtraction</li>
+            <li>multiplication and division</li>
+            <li>all other kinds of expression
+        </li></ol>
+        </li>
+
+    <li>All binary expression operators are left associative, except for the
+    relational operators (equality and less than) which are not associative.</li>
+
+    <li>The function type (<code>=&gt;</code>) is right associative.</li>
+
+</ul>
+
+<p>The parser skeleton you are given already handles the lexical issues
+such as parsing integers, identifiers (both defining occurrences
+<code>idndef</code> and applied occurrences <code>idnuse</code>) and comments.</p>
+
+<h4>What you have to do</h4>
+
+<p>You have to write, document and test a Scala syntax analyser including
+tree builder for FunLang.</p>
+
+<p>You are strongly advised not to try to solve the whole assignment in one
+go.
+It is best to write code to handle the parsing and tree construction for
+some simple constructs first and then build up to the full language.</p>
+
+<p>Your code must use the Scala parsing library as discussed in lectures
+and practicals.
+You should use the expression language syntax analyser and tree builder
+from the mixed classes as a guide for your implementation.</p>
+
+<p>The associated assignment code bundle contains a skeleton sbt project for
+the assignment. The modules are very similar to those used in the practical exercises for
+Week 5 onwards.
+The skeleton contains the modules you will need.
+Some of the parsing and tree construction is given to you as an
+illustration; you must provide the rest (look for FIXME in the code).</p>
+
+<p>As well as lexing and parsing the input, your program should construct a
+suitable source program tree to represent the parsed result.
+See <code>FunLangTree.scala</code> in the skeleton for the full definition
+and description of the tree structures that you must use.
+Do not modify the tree classes, just create instances in your parser code.</p>
+
+<p>As an example of the desired tree structure, here is the tree that
+should be produced from the first program above:</p>
+
+<pre>PlusExp (IntExp (2), StarExp (IntExp (3), IntExp (4)))
+</pre>
+
+<p>Notice that the higher precedence of multiplication over addition has
+been taken into account in this tree.</p>
+
+<p>As a more complex example, here is the tree for the <code>inc</code> function
+program above:</p>
+
+<pre>BlockExp (
+    Vector (
+        Val (IdnDef ("x"), IntExp (100)),
+        FunGroup (
+            Vector (
+                Fun (
+                    IdnDef ("inc"),
+                    Arg (IdnDef ("a"), IntType ()),
+                    PlusExp (IdnUse ("a"), IntExp (1)))))),
+    AppExp (IdnUse ("inc"), IdnUse ("x")))
+</pre>
+
+<p>The tree contains a single block with two definitions: one for "x" and one
+for "inc". The function definition contains three children: one for the name,
+one for the argument name and type, and one for the body expression. Finally,
+the block has the function call as its value expression.</p>
+
+<h4>Running the syntax analyser and testing it</h4>
+
+The skeleton for this assignment is designed to be run from within sbt.
+For example, to compile your project and run it on the file
+<code>test/simple.fun</code> you use the command
+
+<pre>  run test/simple.fun
+</pre>
+
+<p>Assuming your code compiles and runs, the run will print the tree that
+has been constructed (for correct input), or will print a syntax error
+message (for incorrect input).</p>
+
+<p>The project is also set up to do automatic testing. See the file
+<code>SyntaxAnalysisTests.scala</code> which provides the necessary
+definitions to test the syntax analyser on some sample inputs. Note
+that the tests we provide are <em>not</em> sufficient to test all of
+your code. You must augment them with other tests.</p>
+
+<p>You can run the tests using the <code>test</code> command in sbt. This
+command will build the project and then run each test in turn,
+comparing the output produced by your program with the expected
+output. Any deviations will be reported as test failures.</p>
+
+
+
+<h4>What you must hand in and how</h4>
+
+<ol>
+
+<li> <p>A zip file containing only:</p>
+     <ul>
+        <li> <p>SyntaxAnalysis.scala</p> </li>
+        <li> <p>SyntaxAnalysisTests.scala</p> </li>
+        <li> <p>your report as a PDF</p> </li>
+     </ul>
+
+    <p>Do not add any new files or include multiple versions
+    of your files. Do not include any libraries or generated files. We will
+    compile your files using sbt and the original directory structure,
+    so you should avoid any other build mechanisms.</p></li>
+
+    <li><p>Your submission should include all of the tests that you have
+    used to make sure that your program is working correctly. Note
+    that just testing one or two simple cases is not enough for many
+    marks. You should test as comprehensively as you can.</p></li>
+
+     <li> <p>Your report should describe how you have
+     achieved the goals of the assignment. Do not neglect the report
+     since it is worth 50% of the marks for the assignment.</p>
+
+     <p>Your report should contain the following sections:</p>
+
+      <ul>
+
+      <li>A title page or heading that gives the assignment details,
+      your name and student number.</li>
+
+      <li>A brief introduction that summarises the aim of the
+     assignment and the structure of the rest of the report.</li>
+
+      <li>A description of the design and implementation work that you
+      have done to achieve the goals of the assignment. Listing some
+      code fragments may be useful to illustrate your description, but
+      don't give a long listing. Leaving out obvious stuff is OK,
+      as long as what you have done is clear. A good rule of thumb is
+      to include enough detail to allow a fellow student to understand it if
+      they are at the stage you were at when you started work on the
+      assignment.</li>
+
+     <li>A description of the testing that you carried out. You should
+     demonstrate that you have used a properly representative set of
+     test cases to be confident that you have covered all the bases.
+     Include details of the tests that you used and the rationale
+     behind why they were chosen. Do not just print the tests out
+     without explanation.</li>
+
+    </ul></li>
+
+</ol>
+
+<p>Submit your code and report electronically as a single zip file called
+<code>ass2.zip</code> using the appropriate submission link on the COMP3000
+iLearn website by the due date and time. Your report should be in PDF
+format.</p>
+
+<p>DO NOT SUBMIT YOUR ASSIGNMENT OR DOCUMENTATION IN ANY OTHER FORMAT THAN ZIP
+and PDF, RESPECTIVELY. Use of any other format slows down the marking and WILL
+result in a mark deduction.</p>
+
+<h4>Marking</h4>
+
+<p>The assignment will be assessed according to the assessment
+standards for the unit learning outcomes.</p>
+
+<p>Marks will be allocated equally to the code and to the report. Your
+code will be assessed for correctness and quality with respect to the
+assignment description. Marking of the report will assess the clarity
+and accuracy of your description and the adequacy of your testing.
+20% of the marks for the assignment will be allocated to testing.</p>
+
+
+
+</body></html>

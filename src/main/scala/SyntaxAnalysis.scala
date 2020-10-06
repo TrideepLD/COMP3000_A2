@@ -50,6 +50,17 @@ class SyntaxAnalysis (positions : Positions) extends Parsers (positions) {
     // NOTE: the second lines for block, valdefn, fundefn, tipe need to be
     //       completely replaced; they are there just to keep the compiler quiet
 
+    // definitions : defngroup+.
+
+// defngroup : fundefn+
+//           | valdefn.
+
+    lazy val definitions : PackratParser[DefnGroup] = 
+        defngroup
+
+    lazy val defngroup : PackratParser[FunGroup] = 
+        fundefn+ |
+        valdefn
 
     lazy val block : PackratParser[Exp] =
         "{" ^^^ BlockExp(Vector(), IntExp(0))  // FIXME
