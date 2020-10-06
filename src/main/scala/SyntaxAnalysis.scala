@@ -17,43 +17,25 @@ class SyntaxAnalysis (positions : Positions) extends Parsers (positions) {
     import FunLangTree._
     import scala.language.postfixOps
 
-    lazy val parser : PackratParser[Program] =
+    lazy val parser : PackratParser[Exp] =
         phrase (program)
 
-    lazy val program : PackratParser[Program] =
-        ((exp <~ ";")+) ^^ Program
+    lazy val program : PackratParser[Exp] =
+        exp
 
     lazy val exp : PackratParser[Exp] =
-        ("let" ~> idndef) ~ ("=" ~> arg) ~ ("in" ~> exp) ^^ {
-            case n ~ e ~ t => Fun (n, e, t)
-        } |
         ("if" ~> exp) ~ ("then" ~> exp) ~ ("else" ~> exp) ^^ {
             case cond ~ left ~ right =>
                 IfExp (cond, left, right)
         } |
-        ("(" ~> idndef) ~ (":" ~> tipe <~ ")") ~ ("=>" ~> exp) ^^ {
-            case argName ~ argType ~ body => FunExp (argName, argType, body)
-        } |
-        rel
-
-    lazy val rel : PackratParser[Exp] =
-        app ~ ("=" ~> app) ^^ { case l ~ r => EqualExp (l, r) } |
-        app ~ ("<" ~> app) ^^ { case l ~ r => LessExp (l, r) } |
-        app
-
-    lazy val app : PackratParser[Exp] =
-        arith ~ app ^^ { case l ~ r => AppExp (l, r) } |
-        arith
-
-    lazy val arith : PackratParser[Exp] =
-        arith ~ ("+" ~> star) ^^ { case l ~ r => PlusExp (l, r) } |
-        arith ~ ("-" ~> star) ^^ { case l ~ r => MinusExp (l, r) } |
-        star
-
-    lazy val star : PackratParser[Exp] =
-        star ~ ("*" ~> factor) ^^ { case l ~ r => StarExp (l, r) } |
-        star ~ ("/" ~> factor) ^^ { case l ~ r => SlashExp (l, r) } |
-        factor
+        exp ~ factor ^^ { case l ~ r => AppExp (l, r) } |
+        exp ~ ("*" ~> factor) ^^ { case l ~ r => StarExp (l, r) } |
+        exp ~ ("/" ~> factor) ^^ { case l ~ r => SlashExp (l, r) } |
+        exp ~ ("==" ~> factor) ^^ { case l ~ r => EqualExp (l, r) } |
+        exp ~ ("<" ~> factor) ^^ { case l ~ r => LessExp (l, r) } |
+        exp ~ ("+" ~> factor) ^^ { case l ~ r => PlusExp (l, r) } |
+        exp ~ ("-" ~> factor) ^^ { case l ~ r => MinusExp (l, r) } |
+        factor // FIXME
 
     lazy val factor : PackratParser[Exp] =
         "false" ^^ (_ => BoolExp (false)) |
@@ -63,8 +45,12 @@ class SyntaxAnalysis (positions : Positions) extends Parsers (positions) {
         "(" ~> exp <~ ")" |
         failure ("exp expected")
 
+    
+
     // NOTE: the second lines for block, valdefn, fundefn, tipe need to be
     //       completely replaced; they are there just to keep the compiler quiet
+
+
     lazy val block : PackratParser[Exp] =
         "{" ^^^ BlockExp(Vector(), IntExp(0))  // FIXME
 
@@ -75,7 +61,9 @@ class SyntaxAnalysis (positions : Positions) extends Parsers (positions) {
         "def" ^^^ Fun(IdnDef("mary"), Arg(IdnDef("joe"), IntType()), IntExp(0)) // FIXME
 
     lazy val tipe : PackratParser[Type] =
-        "some type" ^^^ IntType()
+        "int" ^^ (_ => IntType ()) |
+        "bool" ^^ (_ => BoolType ()) |
+        "(" ~> tipe <~ ")"
 
     // NOTE: You should not need to change anything below here...
 

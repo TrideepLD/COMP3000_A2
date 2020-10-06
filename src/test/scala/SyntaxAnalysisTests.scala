@@ -129,4 +129,27 @@ class SyntaxAnalysisTests extends ParseTests {
 
     // FIXME: more tests here...
 
+    test ("parsing digits as a factor gives the correct tree") {
+        exp ("1203") should parseTo[FunLangNode] (IntExp (1203))
+    }
+
+    test ("parsing a simple expression produces the correct tree") {
+        exp ("2 + 4") should parseTo[FunLangNode] (PlusExp (IntExp (2), IntExp (4)))
+    }
+
+    test ("parsing an expression with associative operators produces the correct tree") {
+        exp ("2 + 4 * 6") should parseTo[FunLangNode] (StarExp(PlusExp(IntExp(2),IntExp(4)),IntExp(6)))
+    }
+
+    // FIXME: MORE TESTS SHOULD GO HERE
+
+
+    test ("parsing a simple expression produces the correct tree for minus") {
+        exp ("2 - 4") should parseTo[FunLangNode] (MinusExp (IntExp (2), IntExp (4)))
+    }
+
+    test ("parsing an expression with associative operators produces the correct tree for slash") {
+        exp ("2 + 4 / 6") should parseTo[FunLangNode] (SlashExp(PlusExp(IntExp(2), IntExp(4)), IntExp(6)))
+    }
+
 }
